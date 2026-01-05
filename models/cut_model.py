@@ -41,8 +41,10 @@ class CUTModel(BaseModel):
         opt, _ = parser.parse_known_args()
 
         # Set default parameters for CUT and FastCUT
+        # lambdax = 1 for CUT
         if opt.CUT_mode.lower() == "cut":
             parser.set_defaults(nce_idt=True, lambda_NCE=1.0)
+        # lambdax = 10 for FastCUT
         elif opt.CUT_mode.lower() == "fastcut":
             parser.set_defaults(
                 nce_idt=False, lambda_NCE=10.0, flip_equivariance=True,
@@ -72,10 +74,13 @@ class CUTModel(BaseModel):
             self.model_names = ['G']
 
         # define networks (both generator and discriminator)
+        # input_nc = input number of channels -> should be set to 275 for HistologyHSI-GB input
+        # output_nc = output number of channels -> should stay at 3 for rgb output
         self.netG = networks.define_G(opt.input_nc, opt.output_nc, opt.ngf, opt.netG, opt.normG, not opt.no_dropout, opt.init_type, opt.init_gain, opt.no_antialias, opt.no_antialias_up, self.gpu_ids, opt)
         self.netF = networks.define_F(opt.input_nc, opt.netF, opt.normG, not opt.no_dropout, opt.init_type, opt.init_gain, opt.no_antialias, self.gpu_ids, opt)
 
         if self.isTrain:
+            # input number of channels into discriminator = output number of channels out of generator = 3
             self.netD = networks.define_D(opt.output_nc, opt.ndf, opt.netD, opt.n_layers_D, opt.normD, opt.init_type, opt.init_gain, opt.no_antialias, self.gpu_ids, opt)
 
             # define loss functions

@@ -242,6 +242,7 @@ def define_G(input_nc, output_nc, ngf, netG, norm='batch', use_dropout=False, in
 
 
     The generator has been initialized by <init_net>. It uses RELU for non-linearity.
+    RELU is a non-linear activation function
     """
     net = None
     norm_layer = get_norm_layer(norm_type=norm)
