@@ -39,54 +39,54 @@ done
 
 # organise hsi files
 # this is done
-for hdr_path in ../../../datasets/HistologyHSI-GB/P*/ROI*/raw; do
+#for hdr_path in ../../../datasets/HistologyHSI-GB/P*/ROI*/raw; do
     # extract P* and ROI* parts from path
     # ROI* part includes cover image number and tumor marker  eg. ROI_1_C01_T
-    patient=$(basename "$(dirname "$(dirname "$hdr_path")")")
-    roi=$(basename "$(dirname "$hdr_path")")
+    #patient=$(basename "$(dirname "$(dirname "$hdr_path")")")
+    #roi=$(basename "$(dirname "$hdr_path")")
 
-    new_name="${patient}_${roi}_raw"
+    #new_name="${patient}_${roi}_raw"
 
-    mv "$hdr_path" "${RAW_DIR}/${new_name}"
-done
+    #mv "$hdr_path" "${RAW_DIR}/${new_name}"
+#done
 
 # organise whiteReference hdr files
-for hdr_path in ../../../datasets/HistologyHSI-GB/P*/ROI*/whiteReference.hdr; do
+#for hdr_path in ../../../datasets/HistologyHSI-GB/P*/ROI*/whiteReference.hdr; do
     # extract P* and ROI* parts from path
-    patient=$(basename "$(dirname "$(dirname "$hdr_path")")")
-    roi=$(basename "$(dirname "$hdr_path")")
+    #patient=$(basename "$(dirname "$(dirname "$hdr_path")")")
+    #roi=$(basename "$(dirname "$hdr_path")")
 
-    new_name="${patient}_${roi}_whiteReference.hdr"
+    #new_name="${patient}_${roi}_whiteReference.hdr"
 
-    mv "$hdr_path" "${WHITE_DIR}/${new_name}"
-done
+   # mv "$hdr_path" "${WHITE_DIR}/${new_name}"
+#done
 
 # organise darkReference hdr files
-for hdr_path in ../../../datasets/HistologyHSI-GB/P*/ROI*/darkReference.hdr; do
+#for hdr_path in ../../../datasets/HistologyHSI-GB/P*/ROI*/darkReference.hdr; do
     # extract P* and ROI* parts from path
-    patient=$(basename "$(dirname "$(dirname "$hdr_path")")")
-    roi=$(basename "$(dirname "$hdr_path")")
+    #patient=$(basename "$(dirname "$(dirname "$hdr_path")")")
+    #roi=$(basename "$(dirname "$hdr_path")")
 
-    new_name="${patient}_${roi}_darkReference.hdr"
+    #new_name="${patient}_${roi}_darkReference.hdr"
 
-    mv "$hdr_path" "${DARK_DIR}/${new_name}"
-done
+    #mv "$hdr_path" "${DARK_DIR}/${new_name}"
+#done
 
 # organise rgb files
-for hdr_path in ../../../datasets/HistologyHSI-GB/P*/ROI*/rgb.png; do
+#for hdr_path in ../../../datasets/HistologyHSI-GB/P*/ROI*/rgb.png; do
     # extract P* and ROI* parts from path
-    patient=$(basename "$(dirname "$(dirname "$hdr_path")")")
-    roi=$(basename "$(dirname "$hdr_path")")
+    #patient=$(basename "$(dirname "$(dirname "$hdr_path")")")
+    #roi=$(basename "$(dirname "$hdr_path")")
 
-    new_name="${patient}_${roi}_rgb.hdr"
+    #new_name="${patient}_${roi}_rgb.hdr"
 
-    mv "$hdr_path" "${RGB_DIR}/${new_name}"
-done
+    #mv "$hdr_path" "${RGB_DIR}/${new_name}"
+#done
 
 
-echo "Dataset organisation complete!"
-echo "Raw hyperspectral data:     ./datasets/raw"
-echo "White reference:      ./datasets/white"
-echo "Dark reference:       ./datasets/dark"
-echo "rgb data:     ./datasets/rgb"
-echo "Ready for preprocessing script (scripts/preprocess.py)"
+#echo "Dataset organisation complete!"
+#echo "Raw hyperspectral data:     ./datasets/raw"
+#echo "White reference:      ./datasets/white"
+#echo "Dark reference:       ./datasets/dark"
+#echo "rgb data:     ./datasets/rgb"
+#echo "Ready for preprocessing script (scripts/preprocess.py)"
