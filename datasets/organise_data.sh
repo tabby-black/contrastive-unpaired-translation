@@ -26,7 +26,7 @@ mkdir -p ${RAW_DIR} ${WHITE_DIR} ${DARK_DIR} ${PREPROCESSED_DIR} ${RGB_DIR} ${TR
 
 # organise hdr files
 # TODO: get this running - it will sort raw files but not raw.hdr
-for hdr_path in ../../../datasets/HistologyHSI-GB/P*/ROI*/raw.hdr; do
+for hdr_path in ../../../datasets/raw_hdrs/raw_hdrs/P*/ROI*/raw.hdr; do
     # extract P* and ROI* parts from path
     # ROI* part includes cover image number and tumor marker  eg. ROI_1_C01_T
     patient=$(basename "$(dirname "$(dirname "$hdr_path")")")
@@ -38,6 +38,7 @@ for hdr_path in ../../../datasets/HistologyHSI-GB/P*/ROI*/raw.hdr; do
 done
 
 # organise hsi files
+# this is done
 for hdr_path in ../../../datasets/HistologyHSI-GB/P*/ROI*/raw; do
     # extract P* and ROI* parts from path
     # ROI* part includes cover image number and tumor marker  eg. ROI_1_C01_T
@@ -49,7 +50,7 @@ for hdr_path in ../../../datasets/HistologyHSI-GB/P*/ROI*/raw; do
     mv "$hdr_path" "${RAW_DIR}/${new_name}"
 done
 
-# organise whiteReference files
+# organise whiteReference hdr files
 for hdr_path in ../../../datasets/HistologyHSI-GB/P*/ROI*/whiteReference.hdr; do
     # extract P* and ROI* parts from path
     patient=$(basename "$(dirname "$(dirname "$hdr_path")")")
@@ -60,7 +61,7 @@ for hdr_path in ../../../datasets/HistologyHSI-GB/P*/ROI*/whiteReference.hdr; do
     mv "$hdr_path" "${WHITE_DIR}/${new_name}"
 done
 
-# organise darkReference files
+# organise darkReference hdr files
 for hdr_path in ../../../datasets/HistologyHSI-GB/P*/ROI*/darkReference.hdr; do
     # extract P* and ROI* parts from path
     patient=$(basename "$(dirname "$(dirname "$hdr_path")")")
