@@ -170,7 +170,10 @@ for raw_hdr in sorted(glob(raw_glob)):
 
     #CALIBRATION
     base = os.path.splitext(os.path.basename(raw_hdr))[0]
+    print("Base:", base)
     prefix = base.replace("_raw", "")
+    print("Prefix: ", prefix)
+    print("White reference hdr file code is trying to open for calibration: datasets/white/" + prefix + "_whiteReference.hdr")
     white_hdr = f"datasets/white/{prefix}_whiteReference.hdr"
     dark_hdr = f"datasets/dark/{prefix}_darkReference"
 
@@ -256,9 +259,6 @@ for hdr, cube, rgb in zip(hdr_files, cube_files, rgb_files):
     # save registered cube to output_cube (same name as before registration so code below still works)
     interleave = hsi_metadata.metadata.get('interleave', 'bill')
     save_image(output_hdr, registered_hsi_cube.astype(np.float32), dtype=np.float32, interleave=interleave, metadata=hsi_metadata, ext='', force=True)
-
-    
-
 
 
 # SPLIT IMAGES BETWEEN TRAIN AND TEST SETS
