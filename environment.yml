@@ -17,7 +17,7 @@ dependencies:
 - packaging
 
 -pip
-- pip:
+pip:
   - dominate>=2.8.0
   - Pillow>=10.0.0
   - visdom>=0.2.4

@@ -9,7 +9,7 @@
 # each band corresponds to a narrow wavelength range
 
 # data preprocessing step 3: image registration
-# roughly align hyperspectral image with corresponding rgb image - useful for evaluation purposes
+# align hyperspectral image with corresponding rgb image - useful for evaluation purposes
 # rgb image is template
 
 # data preprocessing step 4: split images between train and test sets
@@ -197,7 +197,7 @@ for raw_hdr in sorted(glob(raw_glob)):
     # BAND REDUCTION
     band_reduced_cube = reduce_spectral_dimensions(calibrated_cube, raw_wavelengths, n=3)
 
-    # save calibrated_cube as ENVI float32 cube in datasets/calibrated folder
+
     # saves both updated .hdr file and corresponding preprocessed hyperspectral image
     # Example:
     # raw_hdr = "/datasets/raw/P1_ROI_3_C01_T_raw.hdr"
