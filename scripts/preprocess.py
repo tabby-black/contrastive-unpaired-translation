@@ -165,30 +165,32 @@ def register_hsi_image(rgb_image, hsi_cube):
 
 # go through each raw hyperspectral file in order
 # spectral Python always loads cubes via the header, not via the raw binary file directly
-i = 0
-for raw_hdr in sorted(glob(raw_glob)):
-    i += 1
+
+# commented this out because all cubes have been calibrated and band reduced :)
+#i = 0
+#for raw_hdr in sorted(glob(raw_glob)):
+    #i += 1
     # load the correct references for this raw hdr
 
     #CALIBRATION
-    base = os.path.splitext(os.path.basename(raw_hdr))[0]
-    prefix = base.replace("_raw", "")
-    white_hdr = f"datasets/white/{prefix}_whiteReference.hdr"
-    dark_hdr = f"datasets/dark/{prefix}_darkReference.hdr"
+    #base = os.path.splitext(os.path.basename(raw_hdr))[0]
+    #prefix = base.replace("_raw", "")
+    #white_hdr = f"datasets/white/{prefix}_whiteReference.hdr"
+    #dark_hdr = f"datasets/dark/{prefix}_darkReference.hdr"
 
-    white_reference_hs_data, white_wavelengths, white_cube_metadata = load_hyperspectral_cube(white_hdr)
-    dark_reference_hs_data, dark_wavelengths, dark_cube_metadata = load_hyperspectral_cube(dark_hdr)
-    raw_hs_data, raw_wavelengths, raw_cube_metadata = load_hyperspectral_cube(raw_hdr)
+    #white_reference_hs_data, white_wavelengths, white_cube_metadata = load_hyperspectral_cube(white_hdr)
+    #dark_reference_hs_data, dark_wavelengths, dark_cube_metadata = load_hyperspectral_cube(dark_hdr)
+    #raw_hs_data, raw_wavelengths, raw_cube_metadata = load_hyperspectral_cube(raw_hdr)
 
 
     # white and dark cubes are full-size and match shape so use per-pixel calibration
     # If you get an error here, check that cubes match shape and if not broadcast per-band spectrum to image shape
-    numerator = raw_hs_data - dark_reference_hs_data
-    denominator = white_reference_hs_data - dark_reference_hs_data
+    #numerator = raw_hs_data - dark_reference_hs_data
+    #denominator = white_reference_hs_data - dark_reference_hs_data
     # dividing normalises the raw data to a [0-1] reflectance scale
-    calibrated_cube = numerator / denominator
+    #calibrated_cube = numerator / denominator
     # clipping to a sensible range
-    calibrated_cube = np.clip(calibrated_cube, 0, 1)
+    #calibrated_cube = np.clip(calibrated_cube, 0, 1)
 
     # delete /datasets/white and /datasets/dark now that calibration using these reference images has finished
     #os.remove("/datasets/white")
@@ -196,7 +198,7 @@ for raw_hdr in sorted(glob(raw_glob)):
 
 
     # BAND REDUCTION
-    band_reduced_cube, wavelength_reduced = reduce_spectral_dimensions(calibrated_cube, raw_wavelengths, n=3)
+    #band_reduced_cube, wavelength_reduced = reduce_spectral_dimensions(calibrated_cube, raw_wavelengths, n=3)
 
 
     # saves both updated .hdr file and corresponding preprocessed hyperspectral image
@@ -208,22 +210,24 @@ for raw_hdr in sorted(glob(raw_glob)):
 
     # change number of bands in metadata before saving new .hdr and cube files
     # added .metadata to this to see if it fixes error
-    reduced_metadata = raw_cube_metadata.metadata.copy()
-    reduced_metadata['bands'] = str(band_reduced_cube.shape[2])
+    #reduced_metadata = raw_cube_metadata.metadata.copy()
+    #reduced_metadata['bands'] = str(band_reduced_cube.shape[2])
 
-    base = os.path.splitext(os.path.basename(raw_hdr))[0]
-    output_hdr = os.path.join(output_dir, base + "_preprocessed.hdr")
+    #base = os.path.splitext(os.path.basename(raw_hdr))[0]
+    #output_hdr = os.path.join(output_dir, base + "_preprocessed.hdr")
     # save calibrated cube to output_hdr
     # use same interleave as original cube's metadate to avoid format mismatch
 
     # is this definitely right that it is using the raw cube interleave? I suppose this hasn't changed
-    interleave = reduced_metadata.get('interleave', 'bill')
-    save_image(output_hdr, band_reduced_cube.astype(np.float32), dtype=np.float32, interleave=interleave, metadata=reduced_metadata, ext='', force=True)
-    print("Calibrated and band reduced cube", i, "saved!")
+    #interleave = reduced_metadata.get('interleave', 'bill')
+    #save_image(output_hdr, band_reduced_cube.astype(np.float32), dtype=np.float32, interleave=interleave, metadata=reduced_metadata, ext='', force=True)
+    #print("Calibrated and band reduced cube", i, "saved!")
 
 
 # IMAGE REGISTRATION
 # needs to happen after hyperspectral images have been preprocessed, and before images are split into train and test datasets
+
+# commented this out because all cubes have been registered :)
 
 # globs - these are lists so we can iterate over them zipped together
 # pattern to match for preprocessed cube headers
@@ -265,7 +269,11 @@ for hdr, cube, rgb in zip(hdr_files, cube_files, rgb_files):
 # move hyperspectral tumor images into trainA
 
 # haven't bothered changing all train and test set paths to have /histology in them because not sure if still using this dataset - but plan is to put them in here
-shutil.move("/datasets/preprocessed/P1_ROI_01_C01_T_raw_preprocessed.hdr", "/datasets/histology/trainA/")
+
+# have changed this path to see if it fixes the 'no such file or directory' error
+shutil.move("/../datasets/preprocessed/P1_ROI_01_C01_T_raw_preprocessed.hdr", "/../datasets/histology/trainA/")
+
+
 shutil.move("/datasets/preprocessed/P1_ROI_01_C01_T_raw_preprocessed", "/datasets/histology/trainA/")
 shutil.move("/datasets/preprocessed/P1_ROI_01_C02_T_raw_preprocessed.hdr", "/datasets/histology/trainA/")
 shutil.move("/datasets/preprocessed/P1_ROI_01_C02_T_raw_preprocessed", "/datasets/histology/trainA/")
