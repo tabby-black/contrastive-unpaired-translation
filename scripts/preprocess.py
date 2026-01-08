@@ -198,6 +198,7 @@ for raw_hdr in sorted(glob(raw_glob)):
 
     # BAND REDUCTION
     band_reduced_cube, wavelength_reduced = reduce_spectral_dimensions(calibrated_cube, raw_wavelengths, n=3)
+    print("Band reduction of this cube completed!")
 
 
     # saves both updated .hdr file and corresponding preprocessed hyperspectral image
@@ -211,7 +212,7 @@ for raw_hdr in sorted(glob(raw_glob)):
     # added .metadata to this to see if it fixes error
     reduced_metadata = raw_cube_metadata.metadata.copy()
     reduced_metadata['bands'] = str(band_reduced_cube.shape[2])
-
+    print("Metadata of this cube updated!")
 
     base = os.path.splitext(os.path.basename(raw_hdr))[0]
     output_hdr = os.path.join(output_dir, base + "_preprocessed.hdr")
@@ -221,6 +222,7 @@ for raw_hdr in sorted(glob(raw_glob)):
     # is this definitely right that it is using the raw cube interleave? I suppose this hasn't changed
     interleave = reduced_metadata.metadata.get('interleave', 'bill')
     save_image(output_hdr, band_reduced_cube.astype(np.float32), dtype=np.float32, interleave=interleave, metadata=reduced_metadata, ext='', force=True)
+    print("Calibrated and band reduced cube saved!")
 
 
 # IMAGE REGISTRATION
