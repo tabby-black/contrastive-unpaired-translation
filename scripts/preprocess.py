@@ -271,7 +271,7 @@ for hdr, cube, rgb in zip(hdr_files, cube_files, rgb_files):
 # haven't bothered changing all train and test set paths to have /histology in them because not sure if still using this dataset - but plan is to put them in here
 
 # have changed this path to see if it fixes the 'no such file or directory' error
-shutil.move("/../datasets/preprocessed/P1_ROI_01_C01_T_raw_preprocessed.hdr", "/../datasets/histology/trainA/")
+shutil.move("datasets/preprocessed/P1_ROI_01_C01_T_raw_preprocessed.hdr", "datasets/histology/trainA/")
 
 
 shutil.move("/datasets/preprocessed/P1_ROI_01_C01_T_raw_preprocessed", "/datasets/histology/trainA/")
