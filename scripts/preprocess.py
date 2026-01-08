@@ -190,7 +190,6 @@ for raw_hdr in sorted(glob(raw_glob)):
     calibrated_cube = numerator / denominator
     # clipping to a sensible range
     calibrated_cube = np.clip(calibrated_cube, 0, 1)
-    # please don't delete my codespace
     print("Calibration of this cube completed!")
 
     # delete /datasets/white and /datasets/dark now that calibration using these reference images has finished
@@ -198,7 +197,7 @@ for raw_hdr in sorted(glob(raw_glob)):
     #os.remove("/datasets/dark")
 
     # BAND REDUCTION
-    band_reduced_cube = reduce_spectral_dimensions(calibrated_cube, raw_wavelengths, n=3)
+    band_reduced_cube, wavelength_reduced = reduce_spectral_dimensions(calibrated_cube, raw_wavelengths, n=3)
 
 
     # saves both updated .hdr file and corresponding preprocessed hyperspectral image
