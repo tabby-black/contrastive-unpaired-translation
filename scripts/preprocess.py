@@ -220,7 +220,7 @@ for raw_hdr in sorted(glob(raw_glob)):
     # use same interleave as original cube's metadate to avoid format mismatch
 
     # is this definitely right that it is using the raw cube interleave? I suppose this hasn't changed
-    interleave = reduced_metadata.metadata.get('interleave', 'bill')
+    interleave = reduced_metadata.get('interleave', 'bill')
     save_image(output_hdr, band_reduced_cube.astype(np.float32), dtype=np.float32, interleave=interleave, metadata=reduced_metadata, ext='', force=True)
     print("Calibrated and band reduced cube saved!")
 
