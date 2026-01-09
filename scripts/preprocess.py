@@ -373,31 +373,6 @@ def register_hsi_image(rgb_image, hsi_cube):
 # All tumor images from P7 should be in trainA
 # The first 6 non-tumor images from P7 ie. ROI 01 C01-06 should be in trainA, the rest in testA
 
-shutil.move("datasets/preprocessed/P8_ROI_03_C01_NT_raw_preprocessed.hdr", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C01_NT_raw_preprocessed", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C02_NT_raw_preprocessed.hdr", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C02_NT_raw_preprocessed", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C03_NT_raw_preprocessed.hdr", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C03_NT_raw_preprocessed", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C04_NT_raw_preprocessed.hdr", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C04_NT_raw_preprocessed", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C05_NT_raw_preprocessed.hdr", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C05_NT_raw_preprocessed", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C06_NT_raw_preprocessed.hdr", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C06_NT_raw_preprocessed", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C07_NT_raw_preprocessed.hdr", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C07_NT_raw_preprocessed", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C08_NT_raw_preprocessed.hdr", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C08_NT_raw_preprocessed", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C09_NT_raw_preprocessed.hdr", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C09_NT_raw_preprocessed", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C10_NT_raw_preprocessed.hdr", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C10_NT_raw_preprocessed", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C11_NT_raw_preprocessed.hdr", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C11_NT_raw_preprocessed", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C12_NT_raw_preprocessed.hdr", "datasets/histology/testA/")
-shutil.move("datasets/preprocessed/P8_ROI_03_C12_NT_raw_preprocessed", "datasets/histology/testA/")
-
 print("Hyperspectral non-tumor images moved into testA!")
 
 #os.remove("datasets/preprocessed")
