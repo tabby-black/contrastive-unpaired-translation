@@ -271,7 +271,9 @@ for hdr, cube, rgb in zip(hdr_files, cube_files, rgb_files):
     output_hdr = os.path.join(output_dir, base + ".hdr")
     # save registered cube to output_cube (same name as before registration so code below still works)
     interleave = hsi_metadata.metadata.get('interleave', 'bill')
-    save_image(output_hdr, registered_hsi_cube.astype(np.float32), dtype=np.float32, interleave=interleave, metadata=hsi_metadata, ext='', force=True)
+    
+    # runs down to this line without error
+    save_image(output_hdr, registered_hsi_cube.astype(np.float32), dtype=np.float32, interleave=interleave, metadata=hsi_metadata.metadata, ext='', force=True)
     print("Cube", i, "registered cube saved!")
 
 
