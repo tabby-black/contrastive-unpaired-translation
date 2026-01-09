@@ -271,7 +271,7 @@ for hdr, cube, rgb in zip(hdr_files, cube_files, rgb_files):
     interleave = hsi_metadata.metadata.get('interleave', 'bill')
     
     save_image(output_hdr, registered_hsi_cube.astype(np.float32), dtype=np.float32, interleave=interleave, metadata=hsi_metadata.metadata, ext='', force=True)
-    print("Cube", i, "registered cube saved!")
+    print("Cube", i, "registered and saved!")
 
 
 
