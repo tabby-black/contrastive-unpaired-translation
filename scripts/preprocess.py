@@ -256,7 +256,6 @@ for hdr, cube, rgb in zip(hdr_files, cube_files, rgb_files):
     # read rgb image into HxWx3 array before calling register_hsi_image function
     rgb = np.array(Image.open(rgb))
     registered_hsi_cube = register_hsi_image(rgb, hsi_cube)
-    print("Cube", i, "registered against corresponding rgb image!")
 
     # change H, W, B in metadata before saving new .hdr and cube files
     registered_metadata = hsi_metadata.metadata.copy()
@@ -264,7 +263,6 @@ for hdr, cube, rgb in zip(hdr_files, cube_files, rgb_files):
     registered_metadata['lines'] = str(H)
     registered_metadata['samples'] = str(W)
     registered_metadata['bands'] = str(B)
-    print("Cube", i, "metadata updated!")
    
     # store registered cube, overriding non-registered cube 
     base = os.path.basename(cube)
@@ -272,7 +270,6 @@ for hdr, cube, rgb in zip(hdr_files, cube_files, rgb_files):
     # save registered cube to output_cube (same name as before registration so code below still works)
     interleave = hsi_metadata.metadata.get('interleave', 'bill')
     
-    # runs down to this line without error
     save_image(output_hdr, registered_hsi_cube.astype(np.float32), dtype=np.float32, interleave=interleave, metadata=hsi_metadata.metadata, ext='', force=True)
     print("Cube", i, "registered cube saved!")
 
