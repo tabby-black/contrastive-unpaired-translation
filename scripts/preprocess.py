@@ -29,6 +29,7 @@ import shutil
 # imreg_dft is for image registration - uses Discrete Fourier Transform
 import imreg_dft
 from sklearn.decomposition import PCA
+from PIL import Image
 
 
 
@@ -252,6 +253,8 @@ i = 0
 for hdr, cube, rgb in zip(hdr_files, cube_files, rgb_files):
     i += 1
     hsi_cube, hsi_wavelengths, hsi_metadata = load_hyperspectral_cube(hdr)
+    # read rgb image into HxWx3 array before calling register_hsi_image function
+    rgb = np.array(Image.open(rgb))
     registered_hsi_cube = register_hsi_image(rgb, hsi_cube)
     print("Cube", i, "registered against corresponding rgb image.")
 
