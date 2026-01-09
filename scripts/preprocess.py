@@ -373,7 +373,7 @@ def register_hsi_image(rgb_image, hsi_cube):
 # All tumor images from P7 should be in trainA
 # The first 6 non-tumor images from P7 ie. ROI 01 C01-06 should be in trainA, the rest in testA
 
-shutil.move("/datasets/preprocessed/P8_ROI_01_C18_NT_raw_preprocessed", "datasets/histology/testA/")
+shutil.move("datasets/preprocessed/P8_ROI_01_C18_NT_raw_preprocessed", "datasets/histology/testA/")
 shutil.move("datasets/preprocessed/P8_ROI_01_C19_NT_raw_preprocessed.hdr", "datasets/histology/testA/")
 shutil.move("datasets/preprocessed/P8_ROI_01_C19_NT_raw_preprocessed", "datasets/histology/testA/")
 shutil.move("datasets/preprocessed/P8_ROI_01_C20_NT_raw_preprocessed.hdr", "datasets/histology/testA/")
