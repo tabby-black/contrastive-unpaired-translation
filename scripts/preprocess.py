@@ -167,11 +167,11 @@ def register_hsi_image(rgb_image, hsi_cube):
 # spectral Python always loads cubes via the header, not via the raw binary file directly
 
 # commented this out because all cubes have been calibrated and band reduced :)
-i = 0
-list = ["datasets/raw/P1_ROI_01_C01_T_raw_preprocessed.hdr"]
+#i = 0
+list = ["datasets/raw/P1_ROI_01_C01_T_raw.hdr"]
 #for raw_hdr in sorted(glob(raw_glob)):
 for raw_hdr in list:
-    i += 1
+    #i += 1
     # load the correct references for this raw hdr
 
     #CALIBRATION
@@ -223,7 +223,7 @@ for raw_hdr in list:
     # is this definitely right that it is using the raw cube interleave? I suppose this hasn't changed
     interleave = reduced_metadata.get('interleave', 'bill')
     save_image(output_hdr, band_reduced_cube.astype(np.float32), dtype=np.float32, interleave=interleave, metadata=reduced_metadata, ext='', force=True)
-    print("Calibrated and band reduced cube", i, "saved!")
+    print("Extra calibrated and band reduced cube saved!")
 
 
 # IMAGE REGISTRATION
