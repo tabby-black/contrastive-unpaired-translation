@@ -12,7 +12,7 @@ from PIL import Image
 def patch_hsi(hdr_path, i=0):
     i+= 1
     # load hyperspectral cube
-    img = open_image(hdr_path).load
+    img = open_image(hdr_path).load()
     H, W, B = img.shape
     patch_metadata = img.metadata.copy()
 
